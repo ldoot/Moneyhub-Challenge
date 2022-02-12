@@ -24,6 +24,7 @@
     "nodemon": "^2.0.7"
   },
   "dependencies": {
+    "axios": "^0.25.0",
     "body-parser": "^1.19.0",
     "config": "^3.3.3",
     "csv-stringify": "^6.0.5",
