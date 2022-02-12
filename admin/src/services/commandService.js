@@ -10,8 +10,6 @@ async function generateUserHoldingsReport() {
 
   const getInvestmentsResult = await getAllUserHoldings();
 
-  console.log(getInvestmentsResult);
-
   if (!getInvestmentsResult.success || !getInvestmentsResult.data) {
     return { success: false, message: "Failed to retrieve user holdings." };
   }
