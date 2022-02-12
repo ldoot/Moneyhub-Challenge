@@ -11,9 +11,12 @@ const stringifyAsync = util.promisify(stringify);
 async function createCSV(inputs) {
   return await stringifyAsync(inputs)
     .then((output) => {
-      return output;
+      return { success: true, data: output };
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.log(err);
+      return { success: false, message: "Failed to generate CSV." };
+    });
 }
 
 module.exports = { createCSV };

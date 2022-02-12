@@ -3,7 +3,7 @@
  *
  * @param {Array<object>} holdings
  */
-function formatHoldingsResponseForCSVCreation(holdings) {
+function formatHoldingsForInvestmentsExport(holdings) {
   let output = [];
 
   holdings.forEach((singleUserHoldings) => {
@@ -22,4 +22,4 @@ function formatHoldingsResponseForCSVCreation(holdings) {
   return output;
 }
 
-module.exports = { formatHoldingsResponseForCSVCreation };
+module.exports = { formatHoldingsForInvestmentsExport };
