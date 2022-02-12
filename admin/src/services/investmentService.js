@@ -1,5 +1,6 @@
 const util = require("util");
 const request = require("request");
+const axios = require("axios");
 
 const config = require("config");
 const getAsync = util.promisify(request.get);
@@ -18,5 +19,20 @@ async function getAllUserHoldings() {
     });
 }
 
+/**
+ *
+ * @description Export an investments report to the investments service.
+ */
+async function postInvestmentsReport(investmentReport) {
+  return await axios
+    .post(`${config.investmentsServiceUrl}/investments/export`, { investmentReport })
+    .then((response) => {
+      return { success: true };
+    })
+    .catch((err) => {
+      console.error(err);
+      return { success: false, message: "Failed to post investments report." };
+    });
+}
 
-module.exports = { getAllUserHoldings };
+module.exports = { getAllUserHoldings, postInvestmentsReport };
