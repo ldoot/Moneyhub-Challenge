@@ -1,6 +1,7 @@
 const { getAllUserHoldings, postInvestmentsReport } = require("./investmentService");
 const { createCSV } = require("./csvUtilities");
 const { formatHoldingsForInvestmentsExport } = require("./reportingService");
+const { getFinancialCompanies } = require("./financialCompaniesService");
 
 /**
  * @description Generates user holdings report and dispatches it to the investments service.
@@ -14,7 +15,13 @@ async function generateUserHoldingsReport() {
     return { success: false, message: "Failed to retrieve user holdings." };
   }
 
-  const formattedHoldings = formatHoldingsForInvestmentsExport(JSON.parse(getInvestmentsResult.data));
+  const financialCompaniesResult = await getFinancialCompanies();
+
+  if (!financialCompaniesResult.success) {
+    return { success: false, message: "Failed to retrieve financial companies for report." };
+  }
+
+  const formattedHoldings = formatHoldingsForInvestmentsExport(JSON.parse(getInvestmentsResult.data), financialCompaniesResult.data);
 
   const generateCSVResult = await createCSV(formattedHoldings);
 
