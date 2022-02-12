@@ -29,6 +29,7 @@
     "config": "^3.3.3",
     "csv-stringify": "^6.0.5",
     "express": "^4.17.1",
+    "jest": "^27.5.1",
     "ramda": "^0.27.1",
     "request": "^2.88.2"
   }
